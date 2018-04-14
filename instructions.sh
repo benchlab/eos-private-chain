@@ -30,11 +30,16 @@ keosd --http-server-address 127.0.0.1:8899
 ###  https://eosio.github.io/genesis/
 ###  you can copy "genesis.json" to the root directory of the HOST machine.
 
-###  set BIOS contract from the network on your second node
-
-./cleos --wallet-port 8899 set contract eosio build/contracts/eosio.bios
 
 ### exit screen with Ctrl-a d or Ctrl-a Ctrl-d and go to a second terminal window on {HOST} to start our BIOS producer
+
+
+######################################################
+### Set BIOS contract from the network on your 1st Node (ONLY RUN IF FIRST NODE IS READY
+######################################################
+###  
+
+./cleos --wallet-port 8899 set contract eosio build/contracts/eosio.bios
 
 ######################################################
 ### Enabling Host As BIOS Producer
@@ -68,9 +73,17 @@ cd ../programs
 
 ###  Create an account by defining the name, in this case "stan", along with the keypair generated with the "create key" command a few steps ago.
 
-./cleos --wallet-port 8899 create account eosio stan [public-key]
+./cleos --wallet-port 8899 create account eosio [public-key]
 
 ### exit screen with Ctrl-a d or Ctrl-a Ctrl-d and go to a fourth terminal window to start our first block producing node
+
+######################################################
+### Set BIOS contract from the network on your 1st Node (ONLY RUN IF FIRST NODE IS READY
+######################################################
+###  
+
+./cleos --wallet-port 8899 set contract eosio build/contracts/eosio.bios
+
 
 #################################################################################
 ### Converting 1st Node Into Block Producer
