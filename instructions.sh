@@ -5,7 +5,7 @@
 #################################################################################
 
 ###########################
-### Create The Initial Blockchain host
+### Create The Initial Blockchain Host For BIOS Production
 ###########################
 
 git clone https://github.com/EOSIO/eos --recursive
@@ -28,8 +28,10 @@ keosd --http-server-address 127.0.0.1:8899
 
 ###  make sure your blockchain genesis has been generated. If you don't have this file, you can do so here: 
 ###  https://eosio.github.io/genesis/
+###  you can copy "genesis.json" to the root directory of the HOST machine.
 
 ###  set BIOS contract from the network on your second node
+
 ./cleos --wallet-port 8899 set contract eosio build/contracts/eosio.bios
 
 ### exit screen with Ctrl-a d or Ctrl-a Ctrl-d and go to a second terminal window on {HOST} to start our BIOS producer
@@ -75,6 +77,7 @@ cd ../programs
 ###########################
 
 ###  Now we setup our second node as a block producer and load a few plugins as well as setting the configuration settings for the block producing node.
+
 ./nodeos --producer-name eosio --plugin eosio::chain_api_plugin \
 --plugin eosio::net_api_plugin \
 --http-server-address 127.0.0.1:8899 \
@@ -97,7 +100,9 @@ cd ../programs
 ###########################
 
 ### Get info from overall network
+
 ./cleos get info 
 
 ###  Get info from the 1st Node
+
 ./cleos --port 8889 get info
