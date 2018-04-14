@@ -4,9 +4,9 @@
 ###  WARNING - THIS IS NOT A BASH SCRIPT :)
 #################################################################################
 
-###########################
-### Create The Initial Blockchain Host For BIOS Production
-###########################
+#################################################################################
+### Create The Initial Blockchain Host For BIOS Production & Resource Allocation
+#################################################################################
 
 git clone https://github.com/EOSIO/eos --recursive
 git submodule update --init --recursive
@@ -36,17 +36,17 @@ keosd --http-server-address 127.0.0.1:8899
 
 ### exit screen with Ctrl-a d or Ctrl-a Ctrl-d and go to a second terminal window on {HOST} to start our BIOS producer
 
-###########################
+######################################################
 ### Enabling Host As BIOS Producer
-###########################
+######################################################
 
 ./nodeos --enable-stale-production --producer-name eosio --plugin eosio::chain_api_plugin --plugin eosio::net_api_plugin
 
 
-###########################
+############################################################################################################
 ### Install for 1st Node - should be a separate machine for proper testing
 ### EOS Must Be Installed On Each Separate Node. Not The Case For A TestNet on the Same Machine
-###########################
+############################################################################################################
 
 git clone https://github.com/EOSIO/eos --recursive
 git submodule update --init --recursive
@@ -72,9 +72,9 @@ cd ../programs
 
 ### exit screen with Ctrl-a d or Ctrl-a Ctrl-d and go to a fourth terminal window to start our first block producing node
 
-###########################
+#################################################################################
 ### Converting 1st Node Into Block Producer
-###########################
+#################################################################################
 
 ###  Now we setup our second node as a block producer and load a few plugins as well as setting the configuration settings for the block producing node.
 
@@ -88,16 +88,16 @@ cd ../programs
 --private-key [\"stan-public-key\",\"stan-private-key\"]
 
 
-###########################
+##################################################################################
 ### SetProds For 1st Node (Block Producer)(Command must be ran on the BIOS HOST)
-###########################
+#################################################################################
 
 ./cleos --wallet-port 8899 push action eosio setprods "{ \"version\": 1, \"producers\": [{\"producer_name\": \"stan\",\"block_signing_key\": \"public-key-for-stan\"}]}" -p
 
 
-###########################
+######################################################
 ### Test Network From BIOS Host
-###########################
+######################################################
 
 ### Get info from overall network
 
